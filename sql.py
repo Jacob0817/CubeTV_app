@@ -5,7 +5,6 @@
 # @Link    : https://github.com/Jacob0817
 # @Version : $V1.0$
 
-import os
 from peewee import *
 
 database = MySQLDatabase("wca_data", user="root", host="localhost", port=3306)
@@ -13,7 +12,8 @@ database = MySQLDatabase("wca_data", user="root", host="localhost", port=3306)
 
 class UnknownField(object):
 
-    def __init__(self, *_, **__): pass
+    def __init__(self, *_, **__):
+        pass
 
 
 class BaseModel(Model):
