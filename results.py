@@ -27,12 +27,4 @@ def n_results(personid,eventid):
 if __name__ == '__main__':
     results = n_results('2011ZHAN24',444)[0]
     print(results)    
-    x = [1,2,3,4,5]
-    y = results
-
-    plt.plot(x,y)
-    plt.yticks([30,40,50,60.70])
-    plt.title('test')
-    plt.xlabel('x')
-    plt.ylabel('y')
-    plt.show()
+    

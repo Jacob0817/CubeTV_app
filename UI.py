@@ -5,7 +5,7 @@
 # @Link    : https://github.com/Jacob0817
 # @Version : $Id$
 
-from PyQt5 import QtCore,QtGui,QtWidgets
+from PyQt5 import QtCore, QtWidgets
 import sys
 import qtawesome
 from results import *
@@ -24,9 +24,9 @@ class MainUi(QtWidgets.QMainWindow):
         self.main_widget = QtWidgets.QWidget()  # 创建窗口主部件
         self.main_layout = QtWidgets.QGridLayout()  # 创建窗口主部件网格布局
         self.main_widget.setLayout(self.main_layout)  # 设置窗口主部件网格布局
-        self.close = QtWidgets.QPushButton(qtawesome.icon('fa.close',color='white'),'')
+        self.close = QtWidgets.QPushButton(qtawesome.icon('fa.close', color='white'),'')
         self.close.clicked.connect(QtCore.QCoreApplication.instance().quit)
-        self.close.setFixedSize(25,25)
+        self.close.setFixedSize(25, 25)
         self.close.setStyleSheet('''
             QPushButton{
                 background: #F76677;
@@ -36,6 +36,7 @@ class MainUi(QtWidgets.QMainWindow):
                 background: red;
             }
             ''')
+
     # 创建左侧控件,网格布局
     def init_left_widget(self):
         self.left_widget = QtWidgets.QWidget()
@@ -98,7 +99,7 @@ class MainUi(QtWidgets.QMainWindow):
                 font-weight: 700;
             }
             ''')
-        
+
     # 创建右侧控件,网格布局
     def init_right_widget(self):
         self.right_widget = QtWidgets.QWidget()
@@ -114,7 +115,7 @@ class MainUi(QtWidgets.QMainWindow):
         self.search_icon.setFont(qtawesome.font('fa', 16))
         self.search_widget_text = QtWidgets.QLineEdit()
         self.search_widget_text.setPlaceholderText('Place holder text')
-        
+
         self.result_widget = QtWidgets.QLabel()
         self.result_layout = QtWidgets.QGridLayout()
         self.result_widget.setLayout(self.result_layout)
@@ -146,12 +147,12 @@ class MainUi(QtWidgets.QMainWindow):
                 border-bottom-right-radius: 10px;
             }
             ''')
-        
+
     def init_assemble(self):
         # 放置控件
         self.main_layout.addWidget(self.left_widget, 0, 0, 12, 2)
         self.main_layout.addWidget(self.right_widget, 0, 2, 12, 10)
-        self.main_layout.addWidget(self.close,0,0,1,12)
+        self.main_layout.addWidget(self.close, 0, 0, 1, 12)
         # 设置主部件
         self.setCentralWidget(self.main_widget)
         self.setWindowOpacity(0.95)  # 设置窗口透明度
@@ -160,19 +161,16 @@ class MainUi(QtWidgets.QMainWindow):
         self.main_layout.setSpacing(0)
 
 
-
 class function(MainUi):
     def __init__(self):
         super().__init__()
 
     def search(self):
-        results = n_results('2011ZHAN24',444)[0]        
+        results = n_results('2011ZHAN24', 444)[0]
         self.result_widget.setText(str(results))
 
     def clear(self):
         self.result_widget.setText(' ')
-
-
 
 
 def main():
