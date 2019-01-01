@@ -155,30 +155,7 @@ class MainUi(QtWidgets.QMainWindow):
         self.main_layout.addWidget(self.close, 0, 0, 1, 12)
         # 设置主部件
         self.setCentralWidget(self.main_widget)
-        self.setWindowOpacity(0.95)  # 设置窗口透明度
+        self.setWindowOpacity(0.9)  # 设置窗口透明度
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)  # 设置透明窗口背景
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)  # 隐藏边框
         self.main_layout.setSpacing(0)
-
-
-class function(MainUi):
-    def __init__(self):
-        super().__init__()
-
-    def search(self):
-        results = n_results('2011ZHAN24', 444)[0]
-        self.result_widget.setText(str(results))
-
-    def clear(self):
-        self.result_widget.setText(' ')
-
-
-def main():
-    app = QtWidgets.QApplication(sys.argv)
-    window = function()
-    window.show()
-    sys.exit(app.exec_())
-
-
-if __name__ == '__main__':
-    main()
