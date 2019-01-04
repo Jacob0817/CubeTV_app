@@ -28,19 +28,19 @@ class MainUi(QtWidgets.QMainWindow):
         self.close.setStyleSheet('''
             QPushButton{
                 background: #FF6F61;
-                border-radius: 5px;
+                border-radius: 10px;
             }
             QPushButton:hover{
                 background: red;
             }
             ''')
         self.reset = QtWidgets.QPushButton(qtawesome.icon('fa.refresh', color='white'), '')
-        self.reset.clicked.connect(lambda: self.doreset())
+        self.reset.clicked.connect(lambda: self.doReset())
         self.reset.setFixedSize(30, 30)
         self.reset.setStyleSheet('''
             QPushButton{
                 background: #FF6F61;
-                border-radius: 5px;
+                border-radius: 10px;
             }
             QPushButton:hover{
                 background: green;
@@ -68,9 +68,9 @@ class MainUi(QtWidgets.QMainWindow):
         self.L_button_2 = QtWidgets.QPushButton('成绩栏')
         self.L_button_2.setObjectName('L_button')
         # ,lable 2
-        self.L_button_3 = QtWidgets.QPushButton('按钮3')
+        self.L_button_3 = QtWidgets.QPushButton('成绩')
         self.L_button_3.setObjectName('L_button')
-        self.L_button_4 = QtWidgets.QPushButton('按钮4')
+        self.L_button_4 = QtWidgets.QPushButton('参赛经历')
         self.L_button_4.setObjectName('L_button')
         self.L_button_5 = QtWidgets.QPushButton('刷新')
         self.L_button_5.setObjectName('L_button')
@@ -97,8 +97,7 @@ class MainUi(QtWidgets.QMainWindow):
         self.left_widget.setStyleSheet('''
             QWidget#left_widget{
                 background: #FF6F61;
-                border-top-left-radius: 10px;
-                border-bottom-left-radius: 10px;
+                border-radius: 10px;
 
             }
             QPushButton{
@@ -125,16 +124,16 @@ class MainUi(QtWidgets.QMainWindow):
             }
             ''')
 
-    # 创建右侧控件,决赛成绩栏,网格布局
+    # 创建决赛成绩栏,网格布局
     def init_final_widget(self):
         self.final_widget = QtWidgets.QWidget()
         self.final_widget.setObjectName('final_widget')
         self.final_layout = QtWidgets.QGridLayout()
         self.final_widget.setLayout(self.final_layout)
-        self.final_widget.setFixedHeight(200)
+        self.final_widget.setFixedHeight(150)
         self.final_widget.hide()
-        # 创建右侧控件内部件
-        # 第一行
+        # 创建决赛成绩栏内部件
+        # 第一行================================================
         self.p_1 = QtWidgets.QPushButton()
         self.p_1.setObjectName('player_L')
         self.p_1_layout = QtWidgets.QGridLayout()
@@ -147,35 +146,42 @@ class MainUi(QtWidgets.QMainWindow):
         self.p_1_1_layout = QtWidgets.QGridLayout()
         self.p_1_1.setLayout(self.p_1_1_layout)
         self.p_1_1.setText('-')
-        self.p_1_1.clicked.connect(lambda: self.setResult(1))
+        self.p_1_1.clicked.connect(lambda: self.setTime(1))
         # r2
         self.p_1_2 = QtWidgets.QPushButton()
         self.p_1_2.setObjectName('upper')
         self.p_1_2_layout = QtWidgets.QGridLayout()
         self.p_1_2.setLayout(self.p_1_2_layout)
         self.p_1_2.setText('-')
-        self.p_1_2.clicked.connect(lambda: self.setResult(2))
+        self.p_1_2.clicked.connect(lambda: self.setTime(2))
         # r3
         self.p_1_3 = QtWidgets.QPushButton()
         self.p_1_3.setObjectName('upper')
         self.p_1_3_layout = QtWidgets.QGridLayout()
         self.p_1_3.setLayout(self.p_1_3_layout)
         self.p_1_3.setText('-')
-        self.p_1_3.clicked.connect(lambda: self.setResult(3))
+        self.p_1_3.clicked.connect(lambda: self.setTime(3))
         # r4
         self.p_1_4 = QtWidgets.QPushButton()
         self.p_1_4.setObjectName('upper')
         self.p_1_4_layout = QtWidgets.QGridLayout()
         self.p_1_4.setLayout(self.p_1_4_layout)
         self.p_1_4.setText('-')
-        self.p_1_4.clicked.connect(lambda: self.setResult(4))
+        self.p_1_4.clicked.connect(lambda: self.setTime(4))
         # r5
         self.p_1_5 = QtWidgets.QPushButton()
-        self.p_1_5.setObjectName('upper_last')
+        self.p_1_5.setObjectName('upper')
         self.p_1_5_layout = QtWidgets.QGridLayout()
         self.p_1_5.setLayout(self.p_1_5_layout)
         self.p_1_5.setText('-')
-        self.p_1_5.clicked.connect(lambda: self.setResult(5))
+        self.p_1_5.clicked.connect(lambda: self.setTime(5))
+        self.p_1_5.clicked.connect(lambda: self.AVG(1))
+        # r6 AVG
+        self.p_1_AVG = QtWidgets.QPushButton()
+        self.p_1_AVG.setObjectName('upper_last')
+        self.p_1_AVG_layout = QtWidgets.QGridLayout()
+        self.p_1_AVG.setLayout(self.p_1_AVG_layout)
+        self.p_1_AVG.setText('-')
         # 第二行================================================
         self.p_2 = QtWidgets.QPushButton()
         self.p_2.setObjectName('player_R')
@@ -189,49 +195,57 @@ class MainUi(QtWidgets.QMainWindow):
         self.p_2_1_layout = QtWidgets.QGridLayout()
         self.p_2_1.setLayout(self.p_2_1_layout)
         self.p_2_1.setText('-')
-        self.p_2_1.clicked.connect(lambda: self.setResult(6))
+        self.p_2_1.clicked.connect(lambda: self.setTime(6))
         # r2
         self.p_2_2 = QtWidgets.QPushButton()
         self.p_2_2.setObjectName('lower')
         self.p_2_2_layout = QtWidgets.QGridLayout()
         self.p_2_2.setLayout(self.p_2_2_layout)
         self.p_2_2.setText('-')
-        self.p_2_2.clicked.connect(lambda: self.setResult(7))
+        self.p_2_2.clicked.connect(lambda: self.setTime(7))
         # r3
         self.p_2_3 = QtWidgets.QPushButton()
         self.p_2_3.setObjectName('lower')
         self.p_2_3_layout = QtWidgets.QGridLayout()
         self.p_2_3.setLayout(self.p_2_3_layout)
         self.p_2_3.setText('-')
-        self.p_2_3.clicked.connect(lambda: self.setResult(8))
+        self.p_2_3.clicked.connect(lambda: self.setTime(8))
         # r4
         self.p_2_4 = QtWidgets.QPushButton()
         self.p_2_4.setObjectName('lower')
         self.p_2_4_layout = QtWidgets.QGridLayout()
         self.p_2_4.setLayout(self.p_2_4_layout)
         self.p_2_4.setText('-')
-        self.p_2_4.clicked.connect(lambda: self.setResult(9))
+        self.p_2_4.clicked.connect(lambda: self.setTime(9))
         # r5
         self.p_2_5 = QtWidgets.QPushButton()
-        self.p_2_5.setObjectName('lower_last')
+        self.p_2_5.setObjectName('lower')
         self.p_2_5_layout = QtWidgets.QGridLayout()
         self.p_2_5.setLayout(self.p_2_5_layout)
         self.p_2_5.setText('-')
-        self.p_2_5.clicked.connect(lambda: self.setResult(10))
-        # 放置右侧控件内部件
-        # 放置结果输出，临时组件
+        self.p_2_5.clicked.connect(lambda: self.setTime(10))
+        self.p_2_5.clicked.connect(lambda: self.AVG(2))
+        # r6 AVG
+        self.p_2_AVG = QtWidgets.QPushButton()
+        self.p_2_AVG.setObjectName('lower_last')
+        self.p_2_AVG_layout = QtWidgets.QGridLayout()
+        self.p_2_AVG.setLayout(self.p_2_AVG_layout)
+        self.p_2_AVG.setText('-')
+        # 放置决赛成绩栏内部件
         self.final_layout.addWidget(self.p_1, 1, 0, 1, 1)
         self.final_layout.addWidget(self.p_1_1, 1, 1, 1, 1)
         self.final_layout.addWidget(self.p_1_2, 1, 2, 1, 1)
         self.final_layout.addWidget(self.p_1_3, 1, 3, 1, 1)
         self.final_layout.addWidget(self.p_1_4, 1, 4, 1, 1)
         self.final_layout.addWidget(self.p_1_5, 1, 5, 1, 1)
+        self.final_layout.addWidget(self.p_1_AVG, 1, 6, 1, 1)
         self.final_layout.addWidget(self.p_2, 2, 0, 1, 1)
         self.final_layout.addWidget(self.p_2_1, 2, 1, 1, 1)
         self.final_layout.addWidget(self.p_2_2, 2, 2, 1, 1)
         self.final_layout.addWidget(self.p_2_3, 2, 3, 1, 1)
         self.final_layout.addWidget(self.p_2_4, 2, 4, 1, 1)
         self.final_layout.addWidget(self.p_2_5, 2, 5, 1, 1)
+        self.final_layout.addWidget(self.p_2_AVG, 2, 6, 1, 1)
         self.final_layout.setSpacing(0)
         # final控件QSS
         self.final_widget.setStyleSheet('''
@@ -267,11 +281,7 @@ class MainUi(QtWidgets.QMainWindow):
                 border: 2px solid darkGray;
                 border-top: none;
                 border-right: none;
-            }
-            QPushButton#upper_last:hover{
                 color: red;
-                font-size: 30px;
-                font-weight: 900;
             }
             QPushButton#player_R{
                 font-size: 28px;
@@ -292,23 +302,19 @@ class MainUi(QtWidgets.QMainWindow):
                 border: 2px solid darkGray;
                 border-bottom: none;
                 border-right: none;
-            }
-            QPushButton#lower_last:hover{
-                color: red;
-                font-size: 30px;
-                font-weight: 900;
+                color: red
             }
             ''')
 
     def init_assemble(self):
         # 放置控件
         self.main_layout.addWidget(self.left_widget, 0, 0, 12, 2)
-        self.main_layout.addWidget(self.final_widget, 0, 2, 12, 10)
+        self.main_layout.addWidget(self.final_widget, 0, 2, 12, 12)
         self.main_layout.addWidget(self.close, 0, 0, 1, 1)
         self.main_layout.addWidget(self.reset, 0, 1, 1, 12)
         # 设置主部件
         self.setCentralWidget(self.main_widget)
-        self.setWindowOpacity(0.9)  # 设置窗口透明度
+        self.setWindowOpacity(1)  # 设置窗口透明度
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)  # 设置透明窗口背景
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)  # 隐藏边框
         self.main_layout.setSpacing(5)
