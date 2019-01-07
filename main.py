@@ -13,9 +13,10 @@ import sys
 class function(MainUi):
     def __init__(self):
         super().__init__()
+    # 决赛PK，成绩栏开关
 
     def final(self):
-        self.final_widget.show()
+        self.stacked_Widget.setCurrentIndex(0)
         self.inputbox.show()
         self.L_x.hide()
 
@@ -35,7 +36,6 @@ class function(MainUi):
 
     # 关闭功能窗口
     def doReset(self):
-        self.final_widget.hide()
         self.inputbox.hide()
         self.L_x.show()
 

@@ -15,6 +15,7 @@ class MainUi(QtWidgets.QMainWindow):
         self.init_main()
         self.init_left_widget()
         self.init_final_widget()
+        self.init_stacked_widget()
         self.init_assemble()
 
     def init_main(self):
@@ -124,7 +125,11 @@ class MainUi(QtWidgets.QMainWindow):
             }
             ''')
 
-    # 创建决赛成绩栏,网格布局
+    # 创建窗口堆栈容器
+    def init_stacked_widget(self):
+    	self.stacked_Widget = QtWidgets.QStackedWidget()
+
+    # 创建决赛成绩栏,网格布局,,堆栈 0
     def init_final_widget(self):
         self.final_widget = QtWidgets.QWidget()
         self.final_widget.setObjectName('final_widget')
@@ -308,8 +313,10 @@ class MainUi(QtWidgets.QMainWindow):
 
     def init_assemble(self):
         # 放置控件
-        self.main_layout.addWidget(self.left_widget, 0, 0, 12, 2)
-        self.main_layout.addWidget(self.final_widget, 0, 2, 12, 12)
+        self.main_layout.addWidget(self.left_widget, 0, 0, 11, 2)
+        # 堆栈控件
+        self.stacked_Widget.addWidget(self.final_widget)
+        self.main_layout.addWidget(self.stacked_Widget, 0, 2, 11, 13)
         self.main_layout.addWidget(self.close, 0, 0, 1, 1)
         self.main_layout.addWidget(self.reset, 0, 1, 1, 12)
         # 设置主部件
