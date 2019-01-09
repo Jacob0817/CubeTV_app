@@ -13,13 +13,20 @@ import sys
 class function(MainUi):
     def __init__(self):
         super().__init__()
-    # 决赛PK，成绩栏开关
 
+    # 决赛PK，成绩栏开关
     def final(self):
         self.stacked_Widget.setCurrentIndex(0)
         self.inputbox.show()
         self.L_x.hide()
 
+    # 晋级成绩栏
+    def listRank(self):
+        self.stacked_Widget.setCurrentIndex(1)
+        self.inputbox.hide()
+        self.L_x.show()
+
+    # 刷新按钮
     def clear(self):
         self.p_1.setText('-')
         self.p_1_1.setText('-')
