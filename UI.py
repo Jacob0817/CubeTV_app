@@ -1101,6 +1101,6 @@ class MainUi(QtWidgets.QMainWindow):
         # 设置主部件
         self.setCentralWidget(self.main_widget)
         self.setWindowOpacity(1)  # 设置窗口透明度
-        self.setAttribute(QtCore.Qt.WA_TranslucentBackground)  # 设置透明窗口背景
+        #self.setAttribute(QtCore.Qt.WA_TranslucentBackground)  # 设置透明窗口背景
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)  # 隐藏边框
         self.main_layout.setSpacing(5)
