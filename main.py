@@ -67,7 +67,7 @@ class function(MainUi):
         self.inputbox.clear()
 
     # 决赛成绩栏，调整成绩显示格式
-    def _format(self, result):
+    def init_format(self, result):
         time = int(result)
         if (time >= 10000):
             return (result[0] + ":" + result[1:3] + "." + result[3:5])
@@ -83,7 +83,7 @@ class function(MainUi):
     def setTime(self, boxId):
         rresult = self.inputbox.text()
         if (int(rresult) <= 99999):
-            result = self._format(rresult)
+            result = self.init_format(rresult)
             if (boxId == 1):
                 self.p_1_1.setText(result)
             elif (boxId == 2):
@@ -107,7 +107,7 @@ class function(MainUi):
         self.inputbox.clear()
 
     # 决赛成绩栏，平均成绩
-    def addt(self, timeList):
+    def init_addt(self, timeList):
         summ = 0
         for time in timeList:
             if (time < 100):
@@ -137,7 +137,7 @@ class function(MainUi):
             P5r = self.p_1_5.text()
             P5 = P5r.replace(':', '')
             timeList = [float(P1), float(P2), float(P3), float(P4), float(P5)]
-            AVG = self.addt(timeList)
+            AVG = self.init_addt(timeList)
             self.p_1_AVG.setText(AVG)
             print(timeList)
         else:
@@ -152,7 +152,7 @@ class function(MainUi):
             P5r = self.p_2_5.text()
             P5 = P5r.replace(':', '')
             timeList = [float(P1), float(P2), float(P3), float(P4), float(P5)]
-            AVG = self.addt(timeList)
+            AVG = self.init_addt(timeList)
             self.p_2_AVG.setText(str(AVG))
 
 
