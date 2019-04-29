@@ -22,7 +22,7 @@ class format_value:
             return('DNS')
         else:
             if(self.rtime >= 6000):
-                self.rtime = (int(self.rtime / 6000)) * 10000 + self.rtime - 6000
+                self.rtime = (int(self.rtime / 6000)) * 10000 + self.rtime - 6000 * (int(self.rtime / 6000))
                 self.time = str(self.rtime)[::-1]
             arr = [self.time[i:i + 2] for i in range(0, len(self.time), 2)]
             time = '.'.join(arr)
